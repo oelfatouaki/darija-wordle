@@ -1,5 +1,5 @@
 export const TICKER_ITEMS = [
-  "Coming soon · Darija Daily",
+  "Mobile app coming soon",
   "5 letters · 6 tries · 1 word a day",
   "3 = ع · 7 = ح",
   "Enter to submit · Backspace to edit",

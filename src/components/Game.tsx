@@ -306,7 +306,7 @@ export default function Game({
           <header className="relative z-10 flex shrink-0 items-center justify-between gap-3 px-4 py-2 md:px-8 md:py-3">
             <Logo compact inverse />
             <div className="flex items-center gap-2">
-              <span className="editorial-label hidden border border-flame px-2 py-1 text-flame sm:inline">Coming soon</span>
+              <span className="editorial-label hidden border border-flame px-2 py-1 text-flame sm:inline">Mobile app soon</span>
               <span className="editorial-label hidden text-dim lg:inline">Edition {edition}</span>
               <button
                 type="button"
