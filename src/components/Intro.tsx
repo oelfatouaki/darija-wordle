@@ -42,7 +42,6 @@ export default function Intro({ onDone }: { onDone: () => void }) {
     if (wordTimer.current) clearInterval(wordTimer.current);
     setCount(100);
     setPhase("leaving");
-    document.cookie = "darija_intro=1; path=/; max-age=31536000; SameSite=Lax";
     exitTimer.current = setTimeout(() => {
       setPhase("done");
       onDone();
@@ -107,7 +106,7 @@ export default function Intro({ onDone }: { onDone: () => void }) {
           </span>
         </span>
         <span className="intro-star text-flame">✳</span>
-        <span>001 — Morocco</span>
+        <span>001 — Darija Daily</span>
       </div>
 
       <div className="relative flex flex-col items-center gap-4">

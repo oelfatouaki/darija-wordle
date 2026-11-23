@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { formatCountdown, getDateKey, secondsUntilNextPuzzle } from "@/lib/daily";
+import { getDailyPhrase } from "@/lib/daily-phrases";
 import { MAX_GUESSES, WORD_LENGTH, getKeyStates, validateGuess } from "@/lib/game";
 import { emptyStats, loadGame, loadStats, recordResult, saveGame } from "@/lib/storage";
 import type { GameStatus, SavedGame, Stats, WordEntry } from "@/lib/types";
@@ -28,7 +29,6 @@ type Props = {
 };
 
 const REVEAL_MS = 600 + (WORD_LENGTH - 1) * 125 + 90;
-const PHRASE_LINES = ["l3eb", "la baghi", "tl3eb"];
 
 export default function Game({
   answer,
@@ -48,6 +48,8 @@ export default function Game({
   const [resultOpen, setResultOpen] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState<number | null>(null);
   const [introDone, setIntroDone] = useState(!showIntro);
+
+  const dailyPhrase = useMemo(() => getDailyPhrase(today), [today]);
 
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shakeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -192,7 +194,7 @@ export default function Game({
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
-      if (helpOpen || statsOpen || resultOpen) return;
+      if (!introDone || helpOpen || statsOpen || resultOpen) return;
       if (event.metaKey || event.ctrlKey || event.altKey) return;
       const key = event.key.toLowerCase();
       if (key === "enter") {
@@ -207,7 +209,7 @@ export default function Game({
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [handleKey, helpOpen, statsOpen, resultOpen]);
+  }, [handleKey, helpOpen, introDone, statsOpen, resultOpen]);
 
   const confirmedGuesses = revealingRow === null ? game.guesses : game.guesses.slice(0, revealingRow);
   const keyStates = useMemo(() => getKeyStates(confirmedGuesses, answer.word), [confirmedGuesses, answer.word]);
@@ -331,14 +333,16 @@ export default function Game({
                 <LogoMark inverse className="h-9 w-9 shrink-0 border border-line-dark" />
                 <p className="editorial-label leading-relaxed text-dim">
                   <span className="block text-flame">No. {edition}</span>
-                  <span>Morocco · daily</span>
+                  <span>Darija Daily</span>
                 </p>
                 <span aria-hidden="true" className="ml-auto h-px flex-1 bg-line-dark" />
               </div>
 
               <Wordmark
-                text="l3eb la baghi tl3eb"
-                lines={PHRASE_LINES}
+                key={dailyPhrase.id}
+                text={dailyPhrase.lines.join(" ")}
+                lines={dailyPhrase.lines}
+                meaning={dailyPhrase.meaning}
                 variant="phrase"
                 onNudge={() => showToast("Start typing — today’s word is waiting.")}
               />
@@ -350,7 +354,6 @@ export default function Game({
               </p>
 
               <div data-cursor="TYPE" className="poster-hide-compact-copy mt-5 flex flex-wrap items-center gap-2 transition-colors hover:text-paper">
-                <span className="editorial-label mr-1 text-dim">Arabizi key</span>
                 <span data-cursor="3" className="border border-line-dark px-2 py-1 font-mono text-[11px] text-paper transition-colors hover:border-flame hover:text-flame">
                   3 = <span lang="ar" className="font-arabic text-[13px]">ع</span>
                 </span>
@@ -403,19 +406,21 @@ export default function Game({
                   <Keyboard keyStates={keyStates} onKey={handleKey} disabled={locked} compact />
                 </div>
 
-                <div className="poster-hide-short mt-3 flex items-center justify-between border-t border-line pt-2 editorial-label text-muted">
-                  <span>Next word in</span>
-                  <span className="font-mono text-ink">{countdown}</span>
-                </div>
-
-                {game.status !== "playing" && !resultOpen && (
-                  <button
-                    type="button"
-                    onClick={showResult}
-                    className="mx-auto mt-3 block border border-ink px-3 py-1.5 editorial-label text-ink transition-colors hover:bg-ink hover:text-surface"
-                  >
-                    See today’s result
-                  </button>
+                {game.status === "playing" ? (
+                  <div className="poster-hide-short mt-3 flex items-center justify-between border-t border-line pt-2 editorial-label text-muted">
+                    <span>Next word in</span>
+                    <span className="font-mono text-ink">{countdown}</span>
+                  </div>
+                ) : (
+                  !resultOpen && (
+                    <button
+                      type="button"
+                      onClick={showResult}
+                      className="mx-auto mt-2 block border border-ink px-3 py-1 editorial-label text-ink transition-colors hover:bg-ink hover:text-surface"
+                    >
+                      See today’s result
+                    </button>
+                  )
                 )}
               </div>
               <span aria-hidden="true" className="pointer-events-none absolute -right-2 -top-2 h-4 w-4 border-r-2 border-t-2 border-flame" />

@@ -6,6 +6,7 @@ type Props = {
   onNudge: () => void;
   text?: string;
   lines?: string[];
+  meaning?: string;
   variant?: "wordmark" | "phrase";
 };
 
@@ -15,6 +16,7 @@ export default function Wordmark({
   onNudge,
   text = DEFAULT_TEXT,
   lines,
+  meaning,
   variant = "wordmark",
 }: Props) {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -88,7 +90,7 @@ export default function Wordmark({
 
   const isPhrase = variant === "phrase";
   const headingClass = isPhrase
-    ? "mt-2 font-display text-[clamp(30px,4.1vw,54px)] leading-[0.9] font-extrabold tracking-[-0.045em] md:mt-3"
+    ? "mt-2 font-display text-[clamp(30px,3.4vw,44px)] leading-[0.94] font-extrabold tracking-[-0.045em] md:mt-3"
     : "mt-2 font-display text-[clamp(40px,7.6vw,92px)] leading-[0.9] font-extrabold tracking-[-0.07em] md:mt-3";
 
   return (
@@ -98,7 +100,7 @@ export default function Wordmark({
         type="button"
         data-cursor="NUDGE"
         title="A little nudge"
-        aria-label={`${lineList.join(" ")} — click for a nudge`}
+        aria-label={`${lineList.join(" ")}${meaning ? ` — ${meaning}` : ""} — click for a nudge`}
         onClick={scatter}
         className={`poster-word flex font-display font-extrabold tracking-[-0.07em] ${
           isPhrase ? "flex-col items-start" : "whitespace-nowrap"

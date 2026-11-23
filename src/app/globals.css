@@ -507,6 +507,10 @@ dialog::backdrop {
   .poster-keys {
     max-width: min(100%, 210px) !important;
   }
+
+  .poster-keys button {
+    height: 32px !important;
+  }
 }
 
 @media (max-width: 767px) and (max-height: 600px) {
