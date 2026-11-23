@@ -21,7 +21,7 @@ Open http://localhost:3000 for the official one-screen edition.
 Routes:
 
 - `/` — official poster edition (the deployed site).
-- `/editorial` — the original scrolling editorial edition, kept locally for reference.
+- `/editorial` — the original scrolling editorial edition, available only in local development (404 on the deployed site).
 - `/one-page` — redirects to `/`.
 
 Useful scripts:
@@ -51,10 +51,12 @@ darija.io content is licensed [CC BY-NC-ND 4.0](https://creativecommons.org/lice
 
 ## Deployment on Vercel
 
-1. Push the repository to GitHub/GitLab.
-2. In Vercel, choose **Add New → Project** and import the repository.
-3. Framework preset: **Next.js**. No environment variables are needed.
-4. Deploy. The homepage is dynamic (`force-dynamic`) so the daily word flips correctly at midnight rather than being frozen at build time.
+- Repository: https://github.com/oelfatouaki/darija-wordle
+- Live site: https://darija-wordle.vercel.app
+- Vercel project: `darija-wordle` (Next.js preset, no environment variables needed).
+- The homepage is dynamic (`force-dynamic`) so the daily word flips correctly at midnight rather than being frozen at build time.
+- `/editorial` is local-only: it returns 404 on Vercel, but remains available with `npm run dev`.
+- Manual deploys use `npx vercel deploy --prod`. Automatic Git deploys require authorizing the Vercel GitHub App for the repository.
 
 ## Project layout
 
