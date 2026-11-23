@@ -1,0 +1,701 @@
+{
+  "meta": {
+    "source": "https://darija.io",
+    "license": "CC BY-NC-ND 4.0 — https://creativecommons.org/licenses/by-nc-nd/4.0/",
+    "generatedAt": "2026-11-23T10:13:07.505Z",
+    "wordLength": 5,
+    "count": 69
+  },
+  "words": [
+    {
+      "word": "3afak",
+      "meaning": "please",
+      "arabic": "عافاك",
+      "pronunciation": "AA-fak",
+      "category": "greetings",
+      "partOfSpeech": "interjection",
+      "french": "s'il te plaît",
+      "sourceUrl": "https://darija.io/word/greetings-00007"
+    },
+    {
+      "word": "3lash",
+      "meaning": "why",
+      "arabic": "علاش",
+      "pronunciation": "3-LASH",
+      "category": "greetings",
+      "partOfSpeech": "adverb",
+      "french": "pourquoi",
+      "sourceUrl": "https://darija.io/word/greetings-00034"
+    },
+    {
+      "word": "3shra",
+      "meaning": "ten",
+      "arabic": "عشرة",
+      "pronunciation": "3SH-ra",
+      "category": "numbers",
+      "partOfSpeech": "numeral",
+      "french": "dix",
+      "sourceUrl": "https://darija.io/word/numbers-00173"
+    },
+    {
+      "word": "3tqni",
+      "meaning": "save me!",
+      "arabic": "عتقني",
+      "pronunciation": "3T-qni",
+      "category": "emergency",
+      "partOfSpeech": "noun",
+      "french": "sauvez-moi",
+      "sourceUrl": "https://darija.io/word/emergency-00695"
+    },
+    {
+      "word": "3ttar",
+      "meaning": "spice merchant / herbalist",
+      "arabic": "عطّار",
+      "pronunciation": "3T-tar",
+      "category": "shopping",
+      "partOfSpeech": "noun",
+      "french": "épicier / herboriste",
+      "sourceUrl": "https://darija.io/word/shopping-00141"
+    },
+    {
+      "word": "3wnni",
+      "meaning": "help me",
+      "arabic": "عاوني",
+      "pronunciation": "3WN-ni",
+      "category": "survival",
+      "partOfSpeech": "phrase",
+      "french": "aide-moi",
+      "sourceUrl": "https://darija.io/word/survival-00727"
+    },
+    {
+      "word": "7anut",
+      "meaning": "small shop / corner store",
+      "arabic": "حانوت",
+      "pronunciation": "HA-nut",
+      "category": "shopping",
+      "partOfSpeech": "noun",
+      "french": "épicerie / boutique",
+      "sourceUrl": "https://darija.io/word/shopping-00124"
+    },
+    {
+      "word": "amlou",
+      "meaning": "almond and argan butter dip",
+      "arabic": "أملو",
+      "pronunciation": "am-LU",
+      "category": "food",
+      "partOfSpeech": "noun",
+      "french": "amlou",
+      "sourceUrl": "https://darija.io/word/food-00117"
+    },
+    {
+      "word": "argan",
+      "meaning": "argan tree",
+      "arabic": "أرگان",
+      "pronunciation": "ar-GAN",
+      "category": "nature",
+      "partOfSpeech": "noun",
+      "french": "arganier",
+      "sourceUrl": "https://darija.io/word/nature-02385"
+    },
+    {
+      "word": "banka",
+      "meaning": "bank",
+      "arabic": "البنكة",
+      "pronunciation": "BAN-ka",
+      "category": "city",
+      "partOfSpeech": "noun",
+      "french": "banque",
+      "sourceUrl": "https://darija.io/word/city-00378"
+    },
+    {
+      "word": "barra",
+      "meaning": "outside",
+      "arabic": "بارا",
+      "pronunciation": "BAR-ra",
+      "category": "directions",
+      "partOfSpeech": "adverb",
+      "french": "dehors",
+      "sourceUrl": "https://darija.io/word/directions-00430"
+    },
+    {
+      "word": "bulis",
+      "meaning": "police",
+      "arabic": "البوليس",
+      "pronunciation": "bu-LIS",
+      "category": "city",
+      "partOfSpeech": "noun",
+      "french": "police",
+      "sourceUrl": "https://darija.io/word/city-00376"
+    },
+    {
+      "word": "bzzaf",
+      "meaning": "a lot / very much / too much",
+      "arabic": "بزاف",
+      "pronunciation": "b-ZAF",
+      "category": "greetings",
+      "partOfSpeech": "adverb",
+      "french": "beaucoup / très / trop",
+      "sourceUrl": "https://darija.io/word/greetings-00031"
+    },
+    {
+      "word": "carte",
+      "meaning": "card",
+      "arabic": "كارت",
+      "pronunciation": "KART",
+      "category": "money",
+      "partOfSpeech": "noun",
+      "french": "carte",
+      "sourceUrl": "https://darija.io/word/money-00432"
+    },
+    {
+      "word": "drari",
+      "meaning": "children/kids",
+      "arabic": "دراري",
+      "pronunciation": "dra-RI",
+      "category": "family",
+      "partOfSpeech": "noun",
+      "french": "enfants",
+      "sourceUrl": "https://darija.io/word/family-00204"
+    },
+    {
+      "word": "ghadi",
+      "meaning": "going to (future)",
+      "arabic": "غادي",
+      "pronunciation": "GHA-di",
+      "category": "pronouns",
+      "partOfSpeech": "pronoun",
+      "french": "aller (futur)",
+      "sourceUrl": "https://darija.io/word/pronouns-00681"
+    },
+    {
+      "word": "ghali",
+      "meaning": "expensive",
+      "arabic": "غالي",
+      "pronunciation": "GHA-li",
+      "category": "shopping",
+      "partOfSpeech": "adjective",
+      "french": "cher",
+      "sourceUrl": "https://darija.io/word/shopping-00126"
+    },
+    {
+      "word": "halal",
+      "meaning": "halal/permitted",
+      "arabic": "حلال",
+      "pronunciation": "ha-LAL",
+      "category": "religion",
+      "partOfSpeech": "noun",
+      "french": "halal",
+      "sourceUrl": "https://darija.io/word/religion-00446"
+    },
+    {
+      "word": "jami3",
+      "meaning": "mosque",
+      "arabic": "جامع",
+      "pronunciation": "JA-mi3",
+      "category": "city",
+      "partOfSpeech": "noun",
+      "french": "mosquée",
+      "sourceUrl": "https://darija.io/word/city-00371"
+    },
+    {
+      "word": "kamun",
+      "meaning": "cumin",
+      "arabic": "كمون",
+      "pronunciation": "ka-MUN",
+      "category": "food",
+      "partOfSpeech": "noun",
+      "french": "cumin",
+      "sourceUrl": "https://darija.io/word/food-00098"
+    },
+    {
+      "word": "kesra",
+      "meaning": "round bread / broken bread",
+      "arabic": "كسرة",
+      "pronunciation": "KES-ra",
+      "category": "food",
+      "partOfSpeech": "noun",
+      "french": "pain rond",
+      "sourceUrl": "https://darija.io/word/food-00121"
+    },
+    {
+      "word": "khali",
+      "meaning": "uncle (maternal)",
+      "arabic": "خالي",
+      "pronunciation": "KHA-li",
+      "category": "family",
+      "partOfSpeech": "noun",
+      "french": "oncle maternel",
+      "sourceUrl": "https://darija.io/word/family-00209"
+    },
+    {
+      "word": "khayb",
+      "meaning": "bad / ugly",
+      "arabic": "خايب",
+      "pronunciation": "KHAYB",
+      "category": "greetings",
+      "partOfSpeech": "adjective",
+      "french": "mauvais / moche",
+      "sourceUrl": "https://darija.io/word/greetings-00047"
+    },
+    {
+      "word": "khayf",
+      "meaning": "scared",
+      "arabic": "خايف",
+      "pronunciation": "KHAYF",
+      "category": "emotions",
+      "partOfSpeech": "adjective",
+      "french": "effrayé",
+      "sourceUrl": "https://darija.io/word/emotions-00234"
+    },
+    {
+      "word": "khdra",
+      "meaning": "vegetables",
+      "arabic": "خضرة",
+      "pronunciation": "KHOD-ra",
+      "category": "food",
+      "partOfSpeech": "noun",
+      "french": "légumes",
+      "sourceUrl": "https://darija.io/word/food-00058"
+    },
+    {
+      "word": "khlii",
+      "meaning": "preserved dried meat",
+      "arabic": "خليع",
+      "pronunciation": "kh-LII",
+      "category": "food",
+      "partOfSpeech": "noun",
+      "french": "viande séchée",
+      "sourceUrl": "https://darija.io/word/food-00118"
+    },
+    {
+      "word": "khmsa",
+      "meaning": "five",
+      "arabic": "خمسة",
+      "pronunciation": "KHOM-sa",
+      "category": "numbers",
+      "partOfSpeech": "numeral",
+      "french": "cinq",
+      "sourceUrl": "https://darija.io/word/numbers-00168"
+    },
+    {
+      "word": "khobz",
+      "meaning": "bread",
+      "arabic": "خبز",
+      "pronunciation": "KHOBZ",
+      "category": "food",
+      "partOfSpeech": "noun",
+      "french": "pain",
+      "sourceUrl": "https://darija.io/word/food-00049"
+    },
+    {
+      "word": "khoya",
+      "meaning": "my brother",
+      "arabic": "خويا",
+      "pronunciation": "KHU-ya",
+      "category": "family",
+      "partOfSpeech": "noun",
+      "french": "mon frère",
+      "sourceUrl": "https://darija.io/word/family-00198"
+    },
+    {
+      "word": "krrsh",
+      "meaning": "stomach",
+      "arabic": "كرش",
+      "pronunciation": "KRRSH",
+      "category": "health",
+      "partOfSpeech": "noun",
+      "french": "ventre",
+      "sourceUrl": "https://darija.io/word/health-00397"
+    },
+    {
+      "word": "l3tsh",
+      "meaning": "thirst / thirsty",
+      "arabic": "العطش",
+      "pronunciation": "l-3TSH",
+      "category": "food",
+      "partOfSpeech": "noun",
+      "french": "soif",
+      "sourceUrl": "https://darija.io/word/food-00087"
+    },
+    {
+      "word": "labas",
+      "meaning": "fine / how are you",
+      "arabic": "لاباس",
+      "pronunciation": "la-BAS",
+      "category": "greetings",
+      "partOfSpeech": "interjection",
+      "french": "ça va / comment ça va",
+      "sourceUrl": "https://darija.io/word/greetings-00002"
+    },
+    {
+      "word": "lalla",
+      "meaning": "madam/lady",
+      "arabic": "لالة",
+      "pronunciation": "LAL-la",
+      "category": "family",
+      "partOfSpeech": "noun",
+      "french": "madame",
+      "sourceUrl": "https://darija.io/word/family-00218"
+    },
+    {
+      "word": "lbar7",
+      "meaning": "yesterday",
+      "arabic": "البارح",
+      "pronunciation": "l-BARH",
+      "category": "time",
+      "partOfSpeech": "adverb",
+      "french": "hier",
+      "sourceUrl": "https://darija.io/word/time-00338"
+    },
+    {
+      "word": "limin",
+      "meaning": "right",
+      "arabic": "اليمين",
+      "pronunciation": "li-MIN",
+      "category": "transport",
+      "partOfSpeech": "noun",
+      "french": "droite",
+      "sourceUrl": "https://darija.io/word/transport-00150"
+    },
+    {
+      "word": "lisir",
+      "meaning": "left",
+      "arabic": "اليسير",
+      "pronunciation": "li-SIR",
+      "category": "transport",
+      "partOfSpeech": "noun",
+      "french": "gauche",
+      "sourceUrl": "https://darija.io/word/transport-00151"
+    },
+    {
+      "word": "m3ssb",
+      "meaning": "angry",
+      "arabic": "معصّب",
+      "pronunciation": "m-3SS-b",
+      "category": "emotions",
+      "partOfSpeech": "adjective",
+      "french": "en colère",
+      "sourceUrl": "https://darija.io/word/emotions-00233"
+    },
+    {
+      "word": "mazal",
+      "meaning": "still/not yet",
+      "arabic": "مازال",
+      "pronunciation": "ma-ZAL",
+      "category": "time",
+      "partOfSpeech": "adverb",
+      "french": "encore/pas encore",
+      "sourceUrl": "https://darija.io/word/time-00362"
+    },
+    {
+      "word": "mbruk",
+      "meaning": "congratulations",
+      "arabic": "مبروك",
+      "pronunciation": "m-BRUK",
+      "category": "compliments",
+      "partOfSpeech": "adjective",
+      "french": "félicitations",
+      "sourceUrl": "https://darija.io/word/compliments-00686"
+    },
+    {
+      "word": "mdina",
+      "meaning": "city",
+      "arabic": "مدينة",
+      "pronunciation": "mdi-NA",
+      "category": "city",
+      "partOfSpeech": "noun",
+      "french": "ville",
+      "sourceUrl": "https://darija.io/word/city-00370"
+    },
+    {
+      "word": "mftah",
+      "meaning": "key",
+      "arabic": "مفتاح",
+      "pronunciation": "MF-tah",
+      "category": "home",
+      "partOfSpeech": "noun",
+      "french": "clé",
+      "sourceUrl": "https://darija.io/word/home-00320"
+    },
+    {
+      "word": "mushi",
+      "meaning": "motorbike / moped",
+      "arabic": "موشي",
+      "pronunciation": "MU-shi",
+      "category": "transport",
+      "partOfSpeech": "noun",
+      "french": "moto",
+      "sourceUrl": "https://darija.io/word/transport-00155"
+    },
+    {
+      "word": "mzyan",
+      "meaning": "good / fine / beautiful",
+      "arabic": "مزيان",
+      "pronunciation": "mz-YAN",
+      "category": "greetings",
+      "partOfSpeech": "adjective",
+      "french": "bien / beau",
+      "sourceUrl": "https://darija.io/word/greetings-00046"
+    },
+    {
+      "word": "nbghi",
+      "meaning": "I love/want",
+      "arabic": "نبغي",
+      "pronunciation": "n-BGHI",
+      "category": "emotions",
+      "partOfSpeech": "verb",
+      "french": "j'aime/veux",
+      "sourceUrl": "https://darija.io/word/emotions-00241"
+    },
+    {
+      "word": "ntuma",
+      "meaning": "you (plural)",
+      "arabic": "نتوما",
+      "pronunciation": "n-TU-ma",
+      "category": "pronouns",
+      "partOfSpeech": "pronoun",
+      "french": "vous",
+      "sourceUrl": "https://darija.io/word/pronouns-00664"
+    },
+    {
+      "word": "qsbur",
+      "meaning": "coriander / cilantro",
+      "arabic": "قصبور",
+      "pronunciation": "QS-bur",
+      "category": "food",
+      "partOfSpeech": "noun",
+      "french": "coriandre",
+      "sourceUrl": "https://darija.io/word/food-00104"
+    },
+    {
+      "word": "riyal",
+      "meaning": "riyal (old unit = 5 centimes)",
+      "arabic": "ريال",
+      "pronunciation": "ri-YAL",
+      "category": "shopping",
+      "partOfSpeech": "noun",
+      "french": "riyal",
+      "sourceUrl": "https://darija.io/word/shopping-00138"
+    },
+    {
+      "word": "rkhis",
+      "meaning": "cheap",
+      "arabic": "رخيص",
+      "pronunciation": "r-KHIS",
+      "category": "shopping",
+      "partOfSpeech": "adjective",
+      "french": "pas cher / bon marché",
+      "sourceUrl": "https://darija.io/word/shopping-00127"
+    },
+    {
+      "word": "sabun",
+      "meaning": "soap",
+      "arabic": "صابون",
+      "pronunciation": "sa-BUN",
+      "category": "home",
+      "partOfSpeech": "noun",
+      "french": "savon",
+      "sourceUrl": "https://darija.io/word/home-00329"
+    },
+    {
+      "word": "sahbi",
+      "meaning": "my friend (m)",
+      "arabic": "صاحبي",
+      "pronunciation": "SAH-bi",
+      "category": "family",
+      "partOfSpeech": "noun",
+      "french": "mon ami",
+      "sourceUrl": "https://darija.io/word/family-00212"
+    },
+    {
+      "word": "sahel",
+      "meaning": "easy",
+      "arabic": "ساهل",
+      "pronunciation": "SA-hel",
+      "category": "adjectives",
+      "partOfSpeech": "adjective",
+      "french": "facile",
+      "sourceUrl": "https://darija.io/word/adjectives-00471"
+    },
+    {
+      "word": "salam",
+      "meaning": "hello / peace",
+      "arabic": "سلام",
+      "pronunciation": "sa-LAM",
+      "category": "greetings",
+      "partOfSpeech": "interjection",
+      "french": "bonjour / paix",
+      "sourceUrl": "https://darija.io/word/greetings-00001"
+    },
+    {
+      "word": "sghir",
+      "meaning": "small",
+      "arabic": "صغير",
+      "pronunciation": "s-GHIR",
+      "category": "adjectives",
+      "partOfSpeech": "adjective",
+      "french": "petit",
+      "sourceUrl": "https://darija.io/word/adjectives-00464"
+    },
+    {
+      "word": "sh7al",
+      "meaning": "how much / how many",
+      "arabic": "شحال",
+      "pronunciation": "sh-HAL",
+      "category": "greetings",
+      "partOfSpeech": "adverb",
+      "french": "combien",
+      "sourceUrl": "https://darija.io/word/greetings-00040"
+    },
+    {
+      "word": "sh7i7",
+      "meaning": "correct/true",
+      "arabic": "صحيح",
+      "pronunciation": "s-7I7",
+      "category": "adjectives",
+      "partOfSpeech": "adjective",
+      "french": "correct/vrai",
+      "sourceUrl": "https://darija.io/word/adjectives-00499"
+    },
+    {
+      "word": "shkun",
+      "meaning": "who",
+      "arabic": "شكون",
+      "pronunciation": "SHKUN",
+      "category": "greetings",
+      "partOfSpeech": "pronoun",
+      "french": "qui",
+      "sourceUrl": "https://darija.io/word/greetings-00037"
+    },
+    {
+      "word": "shreb",
+      "meaning": "drink (command)",
+      "arabic": "شرب",
+      "pronunciation": "SHREB",
+      "category": "food",
+      "partOfSpeech": "verb",
+      "french": "bois",
+      "sourceUrl": "https://darija.io/word/food-00089"
+    },
+    {
+      "word": "skhun",
+      "meaning": "hot",
+      "arabic": "سخون",
+      "pronunciation": "s-KHUN",
+      "category": "food",
+      "partOfSpeech": "adjective",
+      "french": "chaud",
+      "sourceUrl": "https://darija.io/word/food-00091"
+    },
+    {
+      "word": "sllou",
+      "meaning": "sellou/energy mix",
+      "arabic": "سلّو",
+      "pronunciation": "SL-lu",
+      "category": "food",
+      "partOfSpeech": "noun",
+      "french": "sellou",
+      "sourceUrl": "https://darija.io/word/food-02121"
+    },
+    {
+      "word": "tajin",
+      "meaning": "tagine",
+      "arabic": "طاجين",
+      "pronunciation": "TA-jin",
+      "category": "food",
+      "partOfSpeech": "noun",
+      "french": "tajine",
+      "sourceUrl": "https://darija.io/word/food-00050"
+    },
+    {
+      "word": "taman",
+      "meaning": "price",
+      "arabic": "تمن",
+      "pronunciation": "TA-man",
+      "category": "shopping",
+      "partOfSpeech": "noun",
+      "french": "prix",
+      "sourceUrl": "https://darija.io/word/shopping-00128"
+    },
+    {
+      "word": "tfddl",
+      "meaning": "here you go / please sit",
+      "arabic": "تفضّل",
+      "pronunciation": "tf-DDL",
+      "category": "greetings",
+      "partOfSpeech": "interjection",
+      "french": "voilà / asseyez-vous",
+      "sourceUrl": "https://darija.io/word/greetings-01178"
+    },
+    {
+      "word": "tlata",
+      "meaning": "three",
+      "arabic": "تلاتة",
+      "pronunciation": "TLA-ta",
+      "category": "numbers",
+      "partOfSpeech": "numeral",
+      "french": "trois",
+      "sourceUrl": "https://darija.io/word/numbers-00166"
+    },
+    {
+      "word": "tmshi",
+      "meaning": "you go (to a man)",
+      "arabic": "تمشي",
+      "pronunciation": "TM-shi",
+      "category": "transport",
+      "partOfSpeech": "verb",
+      "french": "tu vas",
+      "sourceUrl": "https://darija.io/word/transport-00145"
+    },
+    {
+      "word": "tobis",
+      "meaning": "bus",
+      "arabic": "طوبيس",
+      "pronunciation": "TO-bis",
+      "category": "transport",
+      "partOfSpeech": "noun",
+      "french": "bus",
+      "sourceUrl": "https://darija.io/word/transport-00143"
+    },
+    {
+      "word": "wakha",
+      "meaning": "OK / alright / even though",
+      "arabic": "واخا",
+      "pronunciation": "WA-kha",
+      "category": "greetings",
+      "partOfSpeech": "interjection",
+      "french": "d'accord / même si",
+      "sourceUrl": "https://darija.io/word/greetings-00017"
+    },
+    {
+      "word": "zanqa",
+      "meaning": "street / alley",
+      "arabic": "زنقة",
+      "pronunciation": "ZAN-qa",
+      "category": "transport",
+      "partOfSpeech": "noun",
+      "french": "rue / ruelle",
+      "sourceUrl": "https://darija.io/word/transport-00159"
+    },
+    {
+      "word": "zitun",
+      "meaning": "olives",
+      "arabic": "زيتون",
+      "pronunciation": "zi-TUN",
+      "category": "food",
+      "partOfSpeech": "noun",
+      "french": "olives",
+      "sourceUrl": "https://darija.io/word/food-00078"
+    },
+    {
+      "word": "zwina",
+      "meaning": "beautiful (f)",
+      "arabic": "زوينة",
+      "pronunciation": "ZWI-na",
+      "category": "emotions",
+      "partOfSpeech": "adjective",
+      "french": "belle",
+      "sourceUrl": "https://darija.io/word/emotions-00237"
+    }
+  ]
+}
