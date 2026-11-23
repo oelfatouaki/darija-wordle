@@ -10,6 +10,7 @@ import HelpModal from "./HelpModal";
 import Intro from "./Intro";
 import Keyboard from "./Keyboard";
 import Logo from "./Logo";
+import PosterResultModal from "./PosterResultModal";
 import ResultModal from "./ResultModal";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
@@ -231,16 +232,29 @@ export default function Game({
         currentGuessCount={game.guesses.length}
         status={game.status}
       />
-      <ResultModal
-        open={resultOpen}
-        onClose={() => setResultOpen(false)}
-        won={game.status === "won"}
-        answer={answer}
-        guesses={game.guesses}
-        puzzleNumber={puzzleNumber}
-        countdown={countdown}
-        stats={stats}
-      />
+      {variant === "compact" ? (
+        <PosterResultModal
+          open={resultOpen}
+          onClose={() => setResultOpen(false)}
+          won={game.status === "won"}
+          answer={answer}
+          guesses={game.guesses}
+          puzzleNumber={puzzleNumber}
+          countdown={countdown}
+          stats={stats}
+        />
+      ) : (
+        <ResultModal
+          open={resultOpen}
+          onClose={() => setResultOpen(false)}
+          won={game.status === "won"}
+          answer={answer}
+          guesses={game.guesses}
+          puzzleNumber={puzzleNumber}
+          countdown={countdown}
+          stats={stats}
+        />
+      )}
     </>
   );
 
@@ -257,7 +271,7 @@ export default function Game({
           <div aria-hidden="true" className="poster-spotlight pointer-events-none absolute inset-0" />
           <div ref={cursorRef} aria-hidden="true" className="poster-cursor pointer-events-none fixed inset-0 z-[60] opacity-0">
             <span className="poster-cursor-halo" />
-            <span className="poster-cursor-core editorial-label">
+            <span className="poster-cursor-core">
               <span data-cursor-label>EXPLORE</span>
             </span>
           </div>

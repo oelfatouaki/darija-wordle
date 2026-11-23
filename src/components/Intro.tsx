@@ -2,9 +2,10 @@
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 
-const INTRO_MS = 1900;
-const EXIT_MS = 780;
+const INTRO_MS = 3200;
+const EXIT_MS = 900;
 const WORD = "darija.".split("");
+const SCRAMBLE_CHARS = "darija37✳";
 const SCATTER: Array<[number, number]> = [
   [-150, -90],
   [90, -140],
@@ -14,20 +15,31 @@ const SCATTER: Array<[number, number]> = [
   [80, 130],
   [20, -150],
 ];
+const GLYPHS: Array<{ char: string; position: CSSProperties; arabic?: boolean }> = [
+  { char: "3", position: { left: "6%", top: "28%", animationDelay: "0s" } },
+  { char: "7", position: { right: "8%", top: "22%", animationDelay: "0.6s" } },
+  { char: "ع", arabic: true, position: { left: "11%", bottom: "24%", animationDelay: "1.2s" } },
+  { char: "ح", arabic: true, position: { right: "13%", bottom: "28%", animationDelay: "1.8s" } },
+  { char: "✳", position: { left: "23%", top: "11%", animationDelay: "0.9s" } },
+];
 
 type Phase = "showing" | "leaving" | "done";
 
 export default function Intro({ onDone }: { onDone: () => void }) {
   const [phase, setPhase] = useState<Phase>("showing");
   const [count, setCount] = useState(0);
+  const [word, setWord] = useState("darija.");
   const frame = useRef<number | null>(null);
   const exitTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scrambleTimer = useRef<ReturnType<typeof setInterval> | null>(null);
   const finished = useRef(false);
 
   const finish = useCallback(() => {
     if (finished.current) return;
     finished.current = true;
     if (frame.current !== null) cancelAnimationFrame(frame.current);
+    if (scrambleTimer.current) clearInterval(scrambleTimer.current);
+    setWord("darija.");
     setCount(100);
     setPhase("leaving");
     document.cookie = "darija_intro=1; path=/; max-age=31536000; SameSite=Lax";
@@ -53,6 +65,21 @@ export default function Intro({ onDone }: { onDone: () => void }) {
     };
     frame.current = requestAnimationFrame(tick);
 
+    let ticks = 0;
+    scrambleTimer.current = setInterval(() => {
+      ticks += 1;
+      if (ticks > 18) {
+        if (scrambleTimer.current) clearInterval(scrambleTimer.current);
+        setWord("darija.");
+        return;
+      }
+      setWord(
+        WORD.map((letter) =>
+          letter === "." ? "." : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]
+        ).join("")
+      );
+    }, 65);
+
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape" || event.key === "Enter" || event.key === " ") finish();
     };
@@ -60,6 +87,7 @@ export default function Intro({ onDone }: { onDone: () => void }) {
 
     return () => {
       if (frame.current !== null) cancelAnimationFrame(frame.current);
+      if (scrambleTimer.current) clearInterval(scrambleTimer.current);
       if (exitTimer.current) clearTimeout(exitTimer.current);
       window.removeEventListener("keydown", onKey);
     };
@@ -72,20 +100,42 @@ export default function Intro({ onDone }: { onDone: () => void }) {
       role="presentation"
       data-phase={phase}
       onClick={finish}
-      className="intro-overlay fixed inset-0 z-[100] flex flex-col justify-between bg-ink px-5 py-5 text-paper md:px-10 md:py-8"
+      className="intro-overlay fixed inset-0 z-[100] flex flex-col justify-between overflow-hidden bg-ink px-5 py-5 text-paper md:px-10 md:py-8"
     >
       <div aria-hidden="true" className="editorial-label flex items-start justify-between text-dim">
-        <span>Darija / A daily ritual</span>
+        <span className="font-display text-[13px] tracking-[-0.04em] normal-case text-paper">
+          darija<span className="text-flame">.</span> wordle
+        </span>
         <span className="intro-star text-flame">✳</span>
         <span>001 — Morocco</span>
       </div>
 
-      <div aria-hidden="true" className="flex flex-col items-center gap-4">
-        <div className="intro-word flex font-display font-extrabold tracking-[-0.08em]">
-          {WORD.map((letter, index) => (
+      <div className="relative flex flex-col items-center gap-5">
+        {GLYPHS.map((glyph, index) => (
+          <span
+            key={index}
+            aria-hidden="true"
+            lang={glyph.arabic ? "ar" : undefined}
+            className={`intro-glyph absolute text-flame ${glyph.arabic ? "font-arabic text-[22px]" : "font-mono text-[15px]"}`}
+            style={glyph.position}
+          >
+            {glyph.char}
+          </span>
+        ))}
+
+        <span aria-hidden="true" className="intro-side editorial-label absolute -left-2 text-dim md:left-0">
+          05 letters
+        </span>
+        <span aria-hidden="true" className="intro-side editorial-label absolute -right-2 text-dim md:right-0">
+          06 tries
+        </span>
+
+        <div aria-hidden="true" className="intro-word relative flex font-display font-extrabold tracking-[-0.08em]">
+          <span className="intro-scan pointer-events-none absolute inset-y-0 w-24" />
+          {word.split("").map((letter, index) => (
             <span
               key={index}
-              className="intro-letter-mask inline-block overflow-hidden py-[0.08em]"
+              className="intro-letter-mask relative z-[1] inline-block overflow-hidden py-[0.08em]"
               style={
                 {
                   "--i": index,
@@ -98,8 +148,9 @@ export default function Intro({ onDone }: { onDone: () => void }) {
             </span>
           ))}
         </div>
+
         <p className="intro-caption editorial-label text-dim">
-          Five letters · Six tries · One word a day
+          darija wordle · five letters · six tries · one word a day
         </p>
       </div>
 
