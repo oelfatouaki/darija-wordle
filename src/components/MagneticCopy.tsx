@@ -40,11 +40,11 @@ export default function MagneticCopy({ lines, className }: Props) {
     <p
       ref={ref}
       data-cursor="RIPPLE"
-      aria-label={lines.map((line) => line.text).join(" ")}
       onMouseMove={onMove}
       onMouseLeave={reset}
       className={className}
     >
+      <span className="sr-only">{lines.map((line) => line.text).join(" ")}</span>
       {lines.map((line, lineIndex) => (
         <span key={lineIndex} className={`poster-copy-line ${line.italic ? "italic text-flame" : ""}`}>
           {line.text.split("").map((letter, letterIndex) => (

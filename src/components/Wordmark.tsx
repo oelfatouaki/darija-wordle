@@ -99,8 +99,8 @@ export default function Wordmark({
         ref={buttonRef}
         type="button"
         data-cursor="NUDGE"
-        title="A little nudge"
-        aria-label={`${lineList.join(" ")}${meaning ? ` — ${meaning}` : ""} — click for a nudge`}
+        title={meaning ? `${meaning} — click for a nudge` : "A little nudge"}
+        aria-label={lineList.join(" ")}
         onClick={scatter}
         className={`poster-word flex font-display font-extrabold tracking-[-0.07em] ${
           isPhrase ? "flex-col items-start" : "whitespace-nowrap"
