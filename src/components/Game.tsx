@@ -12,6 +12,7 @@ import Intro from "./Intro";
 import Keyboard from "./Keyboard";
 import Logo from "./Logo";
 import LogoMark from "./LogoMark";
+import MagneticCopy from "./MagneticCopy";
 import PosterResultModal from "./PosterResultModal";
 import ResultModal from "./ResultModal";
 import SiteFooter from "./SiteFooter";
@@ -291,8 +292,8 @@ export default function Game({
             <div className="marquee-track marquee-fast editorial-label text-dim">
               {[0, 1].map((copy) => (
                 <span key={copy} className="flex items-center whitespace-nowrap">
-                  {TICKER_ITEMS.map((item) => (
-                    <span key={item} className="flex items-center">
+                  {TICKER_ITEMS.map((item, index) => (
+                    <span key={item} className={`flex items-center ${index === 0 ? "text-flame" : ""}`}>
                       <span className="mx-3 text-flame">✳</span>
                       {item}
                     </span>
@@ -305,6 +306,7 @@ export default function Game({
           <header className="relative z-10 flex shrink-0 items-center justify-between gap-3 px-4 py-2 md:px-8 md:py-3">
             <Logo compact inverse />
             <div className="flex items-center gap-2">
+              <span className="editorial-label hidden border border-flame px-2 py-1 text-flame sm:inline">Coming soon</span>
               <span className="editorial-label hidden text-dim lg:inline">Edition {edition}</span>
               <button
                 type="button"
@@ -329,11 +331,11 @@ export default function Game({
 
           <main className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-1 px-4 pb-1 md:flex-row md:gap-6 md:px-8 lg:gap-12">
             <section className="relative w-full shrink-0 md:min-w-0 md:flex-1 lg:w-[clamp(300px,26vw,360px)] lg:flex-none">
-              <div data-cursor="DAILY" className="poster-hide-compact-copy flex items-center gap-3 transition-colors hover:text-paper">
-                <LogoMark inverse className="h-9 w-9 shrink-0 border border-line-dark" />
+              <div data-cursor="STAMP" className="poster-stamp poster-hide-compact-copy flex items-center gap-3 transition-colors hover:text-paper">
+                <LogoMark inverse className="poster-stamp-mark h-9 w-9 shrink-0 border border-line-dark" />
                 <p className="editorial-label leading-relaxed text-dim">
-                  <span className="block text-flame">No. {edition}</span>
-                  <span>Darija Daily</span>
+                  <span className="poster-stamp-line block text-flame">No. {edition}</span>
+                  <span className="poster-stamp-line">Darija Daily</span>
                 </p>
                 <span aria-hidden="true" className="ml-auto h-px flex-1 bg-line-dark" />
               </div>
@@ -347,11 +349,14 @@ export default function Game({
                 onNudge={() => showToast("Start typing — today’s word is waiting.")}
               />
 
-              <p data-cursor="READ" className="poster-hide-compact-copy mt-4 font-serif text-[clamp(21px,2.5vw,34px)] leading-[1.02] tracking-[-0.02em] text-paper transition-colors hover:text-flame md:mt-5 md:max-w-[28ch] lg:max-w-none">
-                <span className="poster-copy-line">Six tries.</span>
-                <span className="poster-copy-line">One word.</span>
-                <span className="poster-copy-line italic text-flame">Every morning.</span>
-              </p>
+              <MagneticCopy
+                lines={[
+                  { text: "Six tries." },
+                  { text: "One word." },
+                  { text: "Every morning.", italic: true },
+                ]}
+                className="poster-hide-compact-copy mt-4 font-serif text-[clamp(21px,2.5vw,34px)] leading-[1.02] tracking-[-0.02em] text-paper md:mt-5 md:max-w-[28ch] lg:max-w-none"
+              />
 
               <div data-cursor="TYPE" className="poster-hide-compact-copy mt-5 flex flex-wrap items-center gap-2 transition-colors hover:text-paper">
                 <span data-cursor="3" className="border border-line-dark px-2 py-1 font-mono text-[11px] text-paper transition-colors hover:border-flame hover:text-flame">

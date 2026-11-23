@@ -135,11 +135,21 @@ export const DAILY_PHRASES: DailyPhrase[] = [
   },
 ];
 
-/** Launch day starts the cycle on the requested phrase, then rotates daily. */
-const LAUNCH_DAY = dayNumber("2026-11-23");
+/** Launch day keeps the requested phrase; later days are seeded-random. */
+const LAUNCH_DATE = "2026-11-23";
+
+function phraseIndex(dateKey: string): number {
+  let hash = 2166136261;
+  for (let index = 0; index < dateKey.length; index += 1) {
+    hash ^= dateKey.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  // Fold the day number in so nearby dates scatter instead of clustering.
+  hash ^= Math.imul(dayNumber(dateKey), 0x9e3779b1);
+  return (hash >>> 0) % DAILY_PHRASES.length;
+}
 
 export function getDailyPhrase(dateKey: string): DailyPhrase {
-  const elapsed = dayNumber(dateKey) - LAUNCH_DAY;
-  const index = ((elapsed % DAILY_PHRASES.length) + DAILY_PHRASES.length) % DAILY_PHRASES.length;
-  return DAILY_PHRASES[index];
+  if (dateKey === LAUNCH_DATE) return DAILY_PHRASES[0];
+  return DAILY_PHRASES[phraseIndex(dateKey)];
 }

@@ -1,16 +1,18 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import LogoMark from "./LogoMark";
 import { CloseIcon } from "./icons";
 
 type Props = {
   open: boolean;
   onClose: () => void;
   title: string;
+  eyebrow?: string;
   children: React.ReactNode;
 };
 
-export default function Modal({ open, onClose, title, children }: Props) {
+export default function Modal({ open, onClose, title, eyebrow = "Guide", children }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const titleId = `modal-title-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 
@@ -29,26 +31,36 @@ export default function Modal({ open, onClose, title, children }: Props) {
         if (event.target === dialogRef.current) onClose();
       }}
       aria-labelledby={titleId}
-      className="w-[calc(100%-2rem)] max-w-[440px] rounded-none border-2 border-ink bg-surface p-0 text-ink shadow-[9px_9px_0_var(--color-ink)]"
+      className="poster-dialog w-[calc(100%-2rem)] max-w-[480px] rounded-none border-2 border-paper bg-ink p-0 text-paper shadow-[10px_10px_0_var(--color-flame)]"
     >
-      <div className="modal-in max-h-[85vh] overflow-y-auto p-6 sm:p-8">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <p className="editorial-label mb-2 text-flame">Darija wordle / daily</p>
-            <h2 id={titleId} className="font-display text-[28px] leading-[1.05] font-extrabold tracking-[-0.04em]">
-              {title}
-            </h2>
+      <div className="modal-in relative max-h-[88vh] overflow-y-auto px-5 py-6 sm:px-7">
+        <div aria-hidden="true" className="poster-grid pointer-events-none absolute inset-0 opacity-20" />
+        <span aria-hidden="true" className="pointer-events-none absolute -left-px -top-px h-4 w-4 border-l-2 border-t-2 border-flame" />
+        <span aria-hidden="true" className="pointer-events-none absolute -bottom-px -right-px h-4 w-4 border-b-2 border-r-2 border-flame" />
+
+        <div className="relative">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <LogoMark className="h-5 w-5" />
+              <p className="editorial-label text-flame">Darija Daily / {eyebrow}</p>
+            </div>
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close dialog"
+              className="flex h-8 w-8 shrink-0 items-center justify-center border border-line-dark text-paper transition-colors hover:border-flame hover:text-flame"
+            >
+              <CloseIcon className="h-4 w-4" />
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close dialog"
-            className="flex h-8 w-8 shrink-0 items-center justify-center border-2 border-ink text-ink transition-colors hover:bg-ink hover:text-surface"
+          <h2
+            id={titleId}
+            className="mt-4 font-display text-[clamp(28px,6vw,42px)] leading-[0.95] font-extrabold tracking-[-0.05em]"
           >
-            <CloseIcon className="h-4 w-4" />
-          </button>
+            {title}<span className="text-flame">.</span>
+          </h2>
+          <div className="mt-6">{children}</div>
         </div>
-        <div className="mt-6">{children}</div>
       </div>
     </dialog>
   );

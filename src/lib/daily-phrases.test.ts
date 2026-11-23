@@ -10,15 +10,14 @@ describe("daily phrases", () => {
     expect(DAILY_PHRASES.some((phrase) => /(?:^|\s)la baghi/.test(phrase.lines.join(" ")))).toBe(false);
   });
 
-  it("rotates deterministically through every phrase before repeating", () => {
+  it("picks a stable, well-scattered phrase for each date", () => {
     const seen = new Set<string>();
-    for (let offset = 0; offset < DAILY_PHRASES.length; offset += 1) {
+    for (let offset = 0; offset < 60; offset += 1) {
       const date = new Date(Date.UTC(2026, 10, 23 + offset)).toISOString().slice(0, 10);
-      const phrase = getDailyPhrase(date);
-      expect(getDailyPhrase(date)).toBe(phrase);
-      seen.add(phrase.id);
+      expect(getDailyPhrase(date)).toBe(getDailyPhrase(date));
+      seen.add(getDailyPhrase(date).id);
     }
-    expect(seen.size).toBe(DAILY_PHRASES.length);
+    expect(seen.size).toBeGreaterThan(8);
   });
 
   it("keeps every phrase sourced from darija.io with a translation", () => {

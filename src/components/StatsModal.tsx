@@ -22,28 +22,31 @@ export default function StatsModal({ open, onClose, stats, countdown, currentGue
   ];
 
   return (
-    <Modal open={open} onClose={onClose} title="Your statistics">
+    <Modal open={open} onClose={onClose} title="Your statistics" eyebrow="Stats">
       <div className="grid grid-cols-4 gap-2">
         {cells.map((cell) => (
-          <div key={cell.label} className="border-2 border-ink bg-paper px-2 py-3 text-center">
-            <p className="font-display text-[25px] leading-none font-extrabold tracking-tight">{cell.value}</p>
-            <p className="editorial-label mt-2 tracking-[0.08em] text-muted">{cell.label}</p>
+          <div
+            key={cell.label}
+            className="border border-line-dark bg-paper/5 px-2 py-3 text-center shadow-[3px_3px_0_var(--color-line-dark)]"
+          >
+            <p className="font-display text-[25px] leading-none font-extrabold tracking-tight text-paper">{cell.value}</p>
+            <p className="editorial-label mt-2 tracking-[0.08em] text-dim">{cell.label}</p>
           </div>
         ))}
       </div>
 
       <div className="mt-7">
-        <p className="editorial-label text-muted">Guess distribution</p>
+        <p className="editorial-label text-dim">Guess distribution</p>
         <div className="mt-3 space-y-1.5">
           {stats.distribution.map((count, index) => {
             const isToday = status === "won" && currentGuessCount === index + 1;
             return (
-              <div key={index} className="flex items-center gap-2 text-[12px] font-semibold">
-                <span className="w-3 text-right font-mono text-muted">{index + 1}</span>
-                <div className="h-5 flex-1 bg-paper">
+              <div key={index} className="flex items-center gap-2 text-[12px] font-semibold text-paper">
+                <span className="w-3 text-right font-mono text-dim">{index + 1}</span>
+                <div className="h-5 flex-1 bg-line-dark/60">
                   <div
-                    className={`flex h-full min-w-[20px] items-center justify-end px-1.5 font-mono text-[11px] text-surface transition-[width] duration-500 ${
-                      isToday ? "bg-flame text-ink" : "bg-ink"
+                    className={`flex h-full min-w-[20px] items-center justify-end px-1.5 font-mono text-[11px] transition-[width] duration-500 ${
+                      isToday ? "bg-flame text-ink" : "bg-paper text-ink"
                     }`}
                     style={{ width: `${count ? Math.max(12, (count / maxCount) * 100) : 0}%` }}
                   >
@@ -56,9 +59,9 @@ export default function StatsModal({ open, onClose, stats, countdown, currentGue
         </div>
       </div>
 
-      <div className="mt-7 flex items-center justify-between border-t-2 border-ink pt-4">
-        <span className="editorial-label text-muted">Next word in</span>
-        <span className="font-mono text-[15px] font-medium tabular-nums">{countdown}</span>
+      <div className="mt-7 flex items-center justify-between border-t border-line-dark pt-4">
+        <span className="editorial-label text-dim">Next word in</span>
+        <span className="font-mono text-[15px] font-medium tabular-nums text-paper">{countdown}</span>
       </div>
     </Modal>
   );
