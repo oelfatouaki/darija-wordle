@@ -1,16 +1,29 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
-const LETTERS = "darija.".split("");
+import { useEffect, useMemo, useRef } from "react";
 
 type Props = {
   onNudge: () => void;
+  text?: string;
+  lines?: string[];
+  variant?: "wordmark" | "phrase";
 };
 
-export default function Wordmark({ onNudge }: Props) {
+const DEFAULT_TEXT = "darija.";
+
+export default function Wordmark({
+  onNudge,
+  text = DEFAULT_TEXT,
+  lines,
+  variant = "wordmark",
+}: Props) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lineList = useMemo(() => lines ?? [text], [lines, text]);
+  const letterCount = useMemo(
+    () => lineList.join("").replace(/\s/g, "").length,
+    [lineList],
+  );
 
   useEffect(() => {
     const button = buttonRef.current;
@@ -57,7 +70,7 @@ export default function Wordmark({ onNudge }: Props) {
 
   const scatter = () => {
     buttonRef.current?.querySelectorAll<HTMLElement>("[data-letter]").forEach((letter, index) => {
-      const angle = (index / LETTERS.length) * Math.PI * 2;
+      const angle = (index / Math.max(letterCount, 1)) * Math.PI * 2;
       const distance = 18 + (index % 3) * 9;
       letter.style.transitionDuration = "160ms";
       letter.style.transform = `translate3d(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px, 0) rotate(${index % 2 ? 8 : -8}deg)`;
@@ -73,27 +86,44 @@ export default function Wordmark({ onNudge }: Props) {
     onNudge();
   };
 
+  const isPhrase = variant === "phrase";
+  const headingClass = isPhrase
+    ? "mt-2 font-display text-[clamp(30px,4.1vw,54px)] leading-[0.9] font-extrabold tracking-[-0.045em] md:mt-3"
+    : "mt-2 font-display text-[clamp(40px,7.6vw,92px)] leading-[0.9] font-extrabold tracking-[-0.07em] md:mt-3";
+
   return (
-    <h1 className="mt-2 font-display text-[clamp(40px,7.6vw,92px)] leading-[0.9] font-extrabold tracking-[-0.07em] md:mt-3">
+    <h1 className={headingClass}>
       <button
         ref={buttonRef}
         type="button"
         data-cursor="NUDGE"
         title="A little nudge"
-        aria-label="darija. — click for a nudge"
+        aria-label={`${lineList.join(" ")} — click for a nudge`}
         onClick={scatter}
-        className="poster-word flex whitespace-nowrap font-display font-extrabold tracking-[-0.07em]"
+        className={`poster-word flex font-display font-extrabold tracking-[-0.07em] ${
+          isPhrase ? "flex-col items-start" : "whitespace-nowrap"
+        }`}
       >
-        {LETTERS.map((letter, index) => (
-          <span key={index} className="word-letter-mask inline-block overflow-hidden py-[0.06em]">
-            <span
-              data-letter
-              aria-hidden="true"
-              style={{ animationDelay: `${index * 65}ms` }}
-              className="word-letter inline-block will-change-transform"
-            >
-              {letter === "." ? <span className="text-flame">{letter}</span> : letter}
-            </span>
+        {lineList.map((line, lineIndex) => (
+          <span key={lineIndex} className={isPhrase ? "flex flex-nowrap gap-x-[0.22em]" : "contents"}>
+            {line.split("").map((letter, letterIndex) => {
+              if (letter === " ") {
+                return <span key={`space-${letterIndex}`} aria-hidden="true" className="inline-block w-[0.22em]" />;
+              }
+              const accent = letter === "." || letter === "3" || letter === "7";
+              return (
+                <span key={`${lineIndex}-${letterIndex}`} className="word-letter-mask inline-block overflow-hidden py-[0.06em]">
+                  <span
+                    data-letter
+                    aria-hidden="true"
+                    style={{ animationDelay: `${(lineIndex * 8 + letterIndex) * 55}ms` }}
+                    className="word-letter inline-block will-change-transform"
+                  >
+                    {accent ? <span className="text-flame">{letter}</span> : letter}
+                  </span>
+                </span>
+              );
+            })}
           </span>
         ))}
       </button>

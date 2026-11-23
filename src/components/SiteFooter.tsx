@@ -44,7 +44,7 @@ export default function SiteFooter() {
             rel="noreferrer"
             className="font-medium text-accent underline decoration-line underline-offset-2 hover:text-ink"
           >
-            Oussama EL Fatouaki
+            Oussama
           </a>
         </span>
       </div>

@@ -28,6 +28,7 @@ type Props = {
 };
 
 const REVEAL_MS = 600 + (WORD_LENGTH - 1) * 125 + 90;
+const PHRASE_LINES = ["l3eb", "la baghi", "tl3eb"];
 
 export default function Game({
   answer,
@@ -326,7 +327,7 @@ export default function Game({
 
           <main className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-1 px-4 pb-1 md:flex-row md:gap-6 md:px-8 lg:gap-12">
             <section className="relative w-full shrink-0 md:min-w-0 md:flex-1 lg:w-[clamp(300px,26vw,360px)] lg:flex-none">
-              <div className="poster-hide-compact-copy flex items-center gap-3">
+              <div data-cursor="DAILY" className="poster-hide-compact-copy flex items-center gap-3 transition-colors hover:text-paper">
                 <LogoMark inverse className="h-9 w-9 shrink-0 border border-line-dark" />
                 <p className="editorial-label leading-relaxed text-dim">
                   <span className="block text-flame">No. {edition}</span>
@@ -335,25 +336,30 @@ export default function Game({
                 <span aria-hidden="true" className="ml-auto h-px flex-1 bg-line-dark" />
               </div>
 
-              <Wordmark onNudge={() => showToast("Start typing — today’s word is waiting.")} />
+              <Wordmark
+                text="l3eb la baghi tl3eb"
+                lines={PHRASE_LINES}
+                variant="phrase"
+                onNudge={() => showToast("Start typing — today’s word is waiting.")}
+              />
 
-              <p data-cursor="READ" className="poster-hide-compact-copy mt-4 font-serif text-[clamp(21px,2.5vw,34px)] leading-[1.02] tracking-[-0.02em] text-paper md:mt-5 md:max-w-[28ch] lg:max-w-none">
+              <p data-cursor="READ" className="poster-hide-compact-copy mt-4 font-serif text-[clamp(21px,2.5vw,34px)] leading-[1.02] tracking-[-0.02em] text-paper transition-colors hover:text-flame md:mt-5 md:max-w-[28ch] lg:max-w-none">
                 <span className="poster-copy-line">Six tries.</span>
                 <span className="poster-copy-line">One word.</span>
                 <span className="poster-copy-line italic text-flame">Every morning.</span>
               </p>
 
-              <div className="poster-hide-compact-copy mt-5 flex flex-wrap items-center gap-2">
+              <div data-cursor="TYPE" className="poster-hide-compact-copy mt-5 flex flex-wrap items-center gap-2 transition-colors hover:text-paper">
                 <span className="editorial-label mr-1 text-dim">Arabizi key</span>
-                <span className="border border-line-dark px-2 py-1 font-mono text-[11px] text-paper">
+                <span data-cursor="3" className="border border-line-dark px-2 py-1 font-mono text-[11px] text-paper transition-colors hover:border-flame hover:text-flame">
                   3 = <span lang="ar" className="font-arabic text-[13px]">ع</span>
                 </span>
-                <span className="border border-line-dark px-2 py-1 font-mono text-[11px] text-paper">
+                <span data-cursor="7" className="border border-line-dark px-2 py-1 font-mono text-[11px] text-paper transition-colors hover:border-flame hover:text-flame">
                   7 = <span lang="ar" className="font-arabic text-[13px]">ح</span>
                 </span>
               </div>
 
-              <p className="poster-hide-compact-copy poster-hide-short mt-5 flex items-center gap-2 editorial-label text-dim">
+              <p data-cursor="WAIT" className="poster-hide-compact-copy poster-hide-short mt-5 flex items-center gap-2 editorial-label text-dim transition-colors hover:text-paper">
                 <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-correct shadow-[0_0_0_3px_rgba(11,107,84,0.18)]" />
                 New word at midnight · Morocco time
               </p>
@@ -428,7 +434,7 @@ export default function Game({
                 data-cursor="VISIT"
                 className="text-paper underline decoration-line underline-offset-2 transition-colors hover:text-flame"
               >
-                Oussama EL Fatouaki
+                Oussama
               </a>
             </span>
           </footer>
