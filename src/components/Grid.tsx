@@ -13,7 +13,7 @@ type Props = {
 export default function Grid({ guesses, answer, draft, revealingRow, shaking, compact = false }: Props) {
   return (
     <div>
-      <div className={`flex items-center justify-between border-b-2 border-ink pb-2 editorial-label ${compact ? "mb-2 md:mb-3" : "mb-3"}`}>
+      <div className={`poster-grid-heading flex items-center justify-between border-b-2 border-ink pb-2 editorial-label ${compact ? "mb-2 md:mb-3" : "mb-3"}`}>
         <span>Guess log</span>
         <span className={compact ? "text-ink" : "text-muted"}>
           {String(guesses.length).padStart(2, "0")} / 06 · 05 letters

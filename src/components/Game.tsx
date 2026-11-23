@@ -288,7 +288,7 @@ export default function Game({
           <span aria-hidden="true" className="cross-in pointer-events-none absolute bottom-2 left-2 h-3 w-3 border-b border-l border-dim/70 delay-200 md:bottom-4 md:left-4" />
           <span aria-hidden="true" className="cross-in pointer-events-none absolute bottom-2 right-2 h-3 w-3 border-b border-r border-dim/70 delay-300 md:bottom-4 md:right-4" />
 
-          <div aria-hidden="true" className="relative z-10 flex h-6 shrink-0 items-center overflow-hidden border-b border-line-dark">
+          <div aria-hidden="true" className="poster-ticker relative z-10 flex h-6 shrink-0 items-center overflow-hidden border-b border-line-dark">
             <div className="marquee-track marquee-fast editorial-label text-dim">
               {[0, 1].map((copy) => (
                 <span key={copy} className="flex items-center whitespace-nowrap">
@@ -306,7 +306,7 @@ export default function Game({
           <header className="relative z-10 flex shrink-0 items-center justify-between gap-3 px-4 py-2 md:px-8 md:py-3">
             <Logo compact inverse />
             <div className="flex items-center gap-2">
-              <span className="editorial-label hidden border border-flame px-2 py-1 text-flame sm:inline">Mobile app soon</span>
+              <span className="poster-coming-soon editorial-label hidden border border-flame px-2 py-1 text-flame sm:inline">Mobile app soon</span>
               <span className="editorial-label hidden text-dim lg:inline">Edition {edition}</span>
               <button
                 type="button"
@@ -391,7 +391,7 @@ export default function Game({
                 </span>
               )}
               <div className="poster-card-inner border-2 border-ink bg-surface p-2 text-ink shadow-[8px_8px_0_var(--color-flame)] md:p-4 md:shadow-[12px_12px_0_var(--color-flame)]">
-                <div className="mb-1 flex items-center justify-between border-b border-line pb-1 editorial-label">
+                <div className="poster-card-heading mb-1 flex items-center justify-between border-b border-line pb-1 editorial-label">
                   <span>Daily word · No. {edition}</span>
                   <span className="text-muted">06 × 05</span>
                 </div>
