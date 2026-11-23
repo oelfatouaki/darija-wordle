@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { buildShareText, scoreGuess } from "@/lib/game";
 import type { Stats, WordEntry } from "@/lib/types";
 import { CheckIcon, CloseIcon, ExternalLinkIcon, ShareIcon } from "./icons";
+import LogoMark from "./LogoMark";
 import Tile from "./Tile";
 
 type Props = {
@@ -77,7 +78,10 @@ export default function PosterResultModal({
         <div className="relative">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="editorial-label text-flame">Result / No. {edition}</p>
+              <div className="flex items-center gap-2">
+                <LogoMark className="h-5 w-5" />
+                <p className="editorial-label text-flame">Result / No. {edition}</p>
+              </div>
               <h2
                 id="poster-result-title"
                 className="mt-2 font-display text-[clamp(32px,7vw,52px)] leading-[0.9] font-extrabold tracking-[-0.06em]"

@@ -93,7 +93,7 @@ export default function Game({
       if (!cursor) return;
       cursor.style.opacity = "1";
       const target = event.target instanceof Element ? event.target.closest("[data-cursor]") : null;
-      const next = target?.getAttribute("data-cursor") ?? "EXPLORE";
+      const next = target?.getAttribute("data-cursor") ?? "";
       if (next !== currentLabel) {
         if (label) label.textContent = next;
         cursor.dataset.state = target ? "active" : "idle";
@@ -269,9 +269,10 @@ export default function Game({
         >
           <div aria-hidden="true" className="poster-grid pointer-events-none absolute inset-0" />
           <div aria-hidden="true" className="poster-spotlight pointer-events-none absolute inset-0" />
-          <div ref={cursorRef} aria-hidden="true" className="poster-cursor pointer-events-none fixed inset-0 z-[60] opacity-0">
-            <span className="poster-cursor-halo" />
-            <span className="poster-cursor-core">
+          <div ref={cursorRef} aria-hidden="true" className="poster-cursor pointer-events-none fixed inset-0 z-[60]">
+            <span className="poster-cursor-ring" />
+            <span className="poster-cursor-dot" />
+            <span className="poster-cursor-label">
               <span data-cursor-label>EXPLORE</span>
             </span>
           </div>
@@ -297,7 +298,7 @@ export default function Game({
             </div>
           </div>
 
-          <header className="relative z-10 flex shrink-0 items-center justify-between gap-3 px-5 py-3 md:px-8">
+          <header className="relative z-10 flex shrink-0 items-center justify-between gap-3 px-4 py-2 md:px-8 md:py-3">
             <Logo compact inverse />
             <div className="flex items-center gap-2">
               <span className="editorial-label hidden text-dim lg:inline">Edition {edition}</span>
@@ -324,11 +325,11 @@ export default function Game({
 
           <main className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-1 px-4 pb-1 md:flex-row md:gap-6 md:px-8">
             <section className="w-full shrink-0 md:min-w-0 md:flex-1">
-              <p className="editorial-label text-dim">
+              <p className="poster-hide-compact-copy editorial-label text-dim">
                 <span className="text-flame">01</span> / Morocco, one word at a time
               </p>
               <Wordmark onNudge={() => showToast("Start typing — today’s word is waiting.")} />
-              <p className="line-up delay-100 mt-3 max-w-[30ch] font-serif text-[clamp(15px,2vw,22px)] italic leading-tight text-dim md:mt-4">
+              <p className="poster-hide-compact-copy line-up delay-100 mt-3 max-w-[30ch] font-serif text-[clamp(15px,2vw,22px)] italic leading-tight text-dim md:mt-4">
                 Moroccan daily word puzzle
               </p>
               <div className="poster-hide-short mt-4 hidden items-center gap-3 md:flex">
@@ -349,7 +350,7 @@ export default function Game({
                   Solved
                 </span>
               )}
-              <div className="poster-card-inner border-2 border-ink bg-surface p-3 text-ink shadow-[8px_8px_0_var(--color-flame)] md:p-4 md:shadow-[12px_12px_0_var(--color-flame)]">
+              <div className="poster-card-inner border-2 border-ink bg-surface p-2 text-ink shadow-[8px_8px_0_var(--color-flame)] md:p-4 md:shadow-[12px_12px_0_var(--color-flame)]">
                 <div className="mb-1 flex items-center justify-between border-b border-line pb-1 editorial-label">
                   <span>Daily word · No. {edition}</span>
                   <span className="text-muted">06 × 05</span>
