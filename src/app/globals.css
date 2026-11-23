@@ -224,11 +224,11 @@ button {
 }
 
 .intro-arabic {
-  animation: rise-in 0.5s ease 0.18s both;
+  animation: rise-in-solid 0.5s ease 0.18s both;
 }
 
 .intro-meaning {
-  animation: rise-in 0.5s ease 0.28s both;
+  animation: rise-in-solid 0.5s ease 0.28s both;
 }
 
 .intro-overlay[data-phase="leaving"] .intro-arabic,
@@ -237,7 +237,7 @@ button {
 }
 
 .intro-caption {
-  animation: rise-in 0.7s ease 0.9s both;
+  animation: rise-in-solid 0.7s ease 0.9s both;
 }
 
 .intro-progress span {
@@ -347,6 +347,11 @@ button {
 @keyframes rise-in {
   from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rise-in-solid {
+  from { transform: translateY(14px); }
+  to { transform: translateY(0); }
 }
 
 @keyframes toast-in {

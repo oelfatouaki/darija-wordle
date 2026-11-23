@@ -34,10 +34,10 @@ export default function Keyboard({ keyStates, onKey, disabled, compact = false }
                 onClick={() => onKey(key)}
                 aria-label={key === "backspace" ? "Delete last character" : undefined}
                 className={[
-                  "flex min-w-0 flex-1 items-center justify-center rounded-[4px] border-2 font-display font-bold uppercase transition-[transform,box-shadow,background-color] duration-100 hover:-translate-y-[2px] active:translate-y-[3px] active:shadow-none disabled:cursor-default",
+                  "flex flex-1 items-center justify-center rounded-[4px] border-2 font-display font-bold uppercase transition-[transform,box-shadow,background-color] duration-100 hover:-translate-y-[2px] active:translate-y-[3px] active:shadow-none disabled:cursor-default",
                   compact
-                    ? "h-[clamp(34px,5.2vh,48px)] text-[10px] sm:text-[11px]"
-                    : "h-[50px] text-[13px] sm:h-[54px] sm:text-[14px]",
+                    ? "h-[clamp(34px,5.2vh,48px)] min-w-[24px] text-[10px] sm:text-[11px]"
+                    : "h-[50px] min-w-0 text-[13px] sm:h-[54px] sm:text-[14px]",
                   special ? "flex-[1.55] font-sans tracking-[0.12em]" : "",
                   keyClasses[visual],
                 ].join(" ")}

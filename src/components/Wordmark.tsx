@@ -100,12 +100,12 @@ export default function Wordmark({
         type="button"
         data-cursor="NUDGE"
         title={meaning ? `${meaning} — click for a nudge` : "A little nudge"}
-        aria-label={lineList.join(" ")}
         onClick={scatter}
         className={`poster-word flex font-display font-extrabold tracking-[-0.07em] ${
           isPhrase ? "flex-col items-start" : "whitespace-nowrap"
         }`}
       >
+        <span className="sr-only">{lineList.join(" ")}</span>
         {lineList.map((line, lineIndex) => (
           <span key={lineIndex} className={isPhrase ? "flex flex-nowrap gap-x-[0.22em]" : "contents"}>
             {line.split("").map((letter, letterIndex) => {
