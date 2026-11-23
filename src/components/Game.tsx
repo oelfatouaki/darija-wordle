@@ -356,7 +356,7 @@ export default function Game({
                   <span className="text-muted">06 × 05</span>
                 </div>
 
-                <div className="poster-board my-1 w-full max-w-[min(100%,52vh)]">
+                <div className="poster-board my-1 w-full max-w-[min(100%,52vh,400px)]">
                   <Grid
                     guesses={game.guesses}
                     answer={answer.word}
@@ -367,7 +367,7 @@ export default function Game({
                   />
                 </div>
 
-                <div data-cursor="TYPE" className="poster-keys mt-2 w-full max-w-[min(100%,50vh)] border-t border-line pt-2">
+                <div data-cursor="TYPE" className="poster-keys mt-2 w-full max-w-[min(100%,50vh,360px)] border-t border-line pt-2">
                   <Keyboard keyStates={keyStates} onKey={handleKey} disabled={locked} compact />
                 </div>
 
