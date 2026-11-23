@@ -7,6 +7,7 @@ import { emptyStats, loadGame, loadStats, recordResult, saveGame } from "@/lib/s
 import type { GameStatus, SavedGame, Stats, WordEntry } from "@/lib/types";
 import Grid from "./Grid";
 import HelpModal from "./HelpModal";
+import Intro from "./Intro";
 import Keyboard from "./Keyboard";
 import Logo from "./Logo";
 import ResultModal from "./ResultModal";
@@ -14,17 +15,25 @@ import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
 import StatsModal from "./StatsModal";
 import { TICKER_ITEMS } from "./Ticker";
+import Wordmark from "./Wordmark";
 
 type Props = {
   answer: WordEntry;
   puzzleNumber: number;
   today: string;
   variant?: "editorial" | "compact";
+  showIntro?: boolean;
 };
 
 const REVEAL_MS = 600 + (WORD_LENGTH - 1) * 125 + 90;
 
-export default function Game({ answer, puzzleNumber, today, variant = "editorial" }: Props) {
+export default function Game({
+  answer,
+  puzzleNumber,
+  today,
+  variant = "editorial",
+  showIntro = false,
+}: Props) {
   const [game, setGame] = useState<SavedGame>({ date: today, guesses: [], status: "playing" });
   const [draft, setDraft] = useState("");
   const [stats, setStats] = useState<Stats>(emptyStats);
@@ -35,6 +44,7 @@ export default function Game({ answer, puzzleNumber, today, variant = "editorial
   const [statsOpen, setStatsOpen] = useState(false);
   const [resultOpen, setResultOpen] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState<number | null>(null);
+  const [introDone, setIntroDone] = useState(!showIntro);
 
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shakeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -67,7 +77,7 @@ export default function Game({ answer, puzzleNumber, today, variant = "editorial
     });
   }, []);
 
-  // Cursor-driven glow plus a tiny contextual readout make the poster feel alive.
+  // A magnetic spotlight and a contextual, smooth-following cursor.
   useEffect(() => {
     if (variant !== "compact") return;
     const node = posterRef.current;
@@ -82,9 +92,10 @@ export default function Game({ answer, puzzleNumber, today, variant = "editorial
       if (!cursor) return;
       cursor.style.opacity = "1";
       const target = event.target instanceof Element ? event.target.closest("[data-cursor]") : null;
-      const next = target?.getAttribute("data-cursor") ?? "PLAY";
-      if (next !== currentLabel && label) {
-        label.textContent = next;
+      const next = target?.getAttribute("data-cursor") ?? "EXPLORE";
+      if (next !== currentLabel) {
+        if (label) label.textContent = next;
+        cursor.dataset.state = target ? "active" : "idle";
         currentLabel = next;
       }
     };
@@ -107,6 +118,8 @@ export default function Game({ answer, puzzleNumber, today, variant = "editorial
     if (toastTimer.current) clearTimeout(toastTimer.current);
     toastTimer.current = setTimeout(() => setToast(null), 2200);
   }, []);
+
+  const handleIntroDone = useCallback(() => setIntroDone(true), []);
 
   // Only one dialog at a time — including when the result auto-opens.
   const openHelp = useCallback(() => {
@@ -236,12 +249,17 @@ export default function Game({ answer, puzzleNumber, today, variant = "editorial
 
     return (
       <>
-        <div ref={posterRef} className="relative flex h-[100dvh] min-h-0 flex-col overflow-hidden bg-ink text-paper">
+        <div
+          ref={posterRef}
+          className={`poster-root relative flex h-[100dvh] min-h-0 flex-col overflow-hidden bg-ink text-paper ${introDone ? "poster-ready" : ""}`}
+        >
           <div aria-hidden="true" className="poster-grid pointer-events-none absolute inset-0" />
           <div aria-hidden="true" className="poster-spotlight pointer-events-none absolute inset-0" />
-          <div ref={cursorRef} aria-hidden="true" className="poster-cursor pointer-events-none fixed left-0 top-0 z-[60] flex items-center opacity-0">
-            <span className="poster-cursor-ring" />
-            <span data-cursor-label className="editorial-label ml-2 text-paper">PLAY</span>
+          <div ref={cursorRef} aria-hidden="true" className="poster-cursor pointer-events-none fixed inset-0 z-[60] opacity-0">
+            <span className="poster-cursor-halo" />
+            <span className="poster-cursor-core editorial-label">
+              <span data-cursor-label>EXPLORE</span>
+            </span>
           </div>
           <div aria-hidden="true" className="pointer-events-none absolute inset-3 border border-line-dark md:inset-5" />
 
@@ -295,18 +313,7 @@ export default function Game({ answer, puzzleNumber, today, variant = "editorial
               <p className="editorial-label text-dim">
                 <span className="text-flame">01</span> / Morocco, one word at a time
               </p>
-              <h1 className="line-up mt-2 font-display text-[clamp(44px,11vw,96px)] leading-[0.9] font-extrabold tracking-[-0.07em] md:mt-3 md:text-[clamp(64px,10vw,112px)]">
-                <button
-                  type="button"
-                  data-cursor="NUDGE"
-                  title="A little nudge"
-                  aria-label="darija. — click for a nudge"
-                  onClick={() => showToast("Start typing — today’s word is waiting.")}
-                  className="font-display font-extrabold tracking-[-0.07em] transition-transform duration-200 hover:-translate-y-1 active:scale-95"
-                >
-                  darija<span className="text-flame">.</span>
-                </button>
-              </h1>
+              <Wordmark onNudge={() => showToast("Start typing — today’s word is waiting.")} />
               <p className="line-up delay-100 mt-3 max-w-[30ch] font-serif text-[clamp(15px,2vw,22px)] italic leading-tight text-dim md:mt-4">
                 Moroccan daily word puzzle
               </p>
@@ -318,7 +325,7 @@ export default function Game({ answer, puzzleNumber, today, variant = "editorial
 
             <section
               data-cursor="PLAY"
-              className="poster-card relative w-full max-w-[min(100%,54vh,440px)] shrink-0 md:-translate-x-4 md:-rotate-1 md:transition-transform md:duration-500 md:hover:rotate-0"
+              className="poster-card relative w-full max-w-[min(100%,64vh,540px)] shrink-0 md:-translate-x-8 md:-rotate-1 md:transition-transform md:duration-500 md:hover:rotate-0"
             >
               {game.status === "won" && (
                 <span
@@ -334,7 +341,7 @@ export default function Game({ answer, puzzleNumber, today, variant = "editorial
                   <span className="text-muted">06 × 05</span>
                 </div>
 
-                <div className="poster-board my-1 w-full max-w-[min(100%,44vh)]">
+                <div className="poster-board my-1 w-full max-w-[min(100%,52vh)]">
                   <Grid
                     guesses={game.guesses}
                     answer={answer.word}
@@ -345,7 +352,7 @@ export default function Game({ answer, puzzleNumber, today, variant = "editorial
                   />
                 </div>
 
-                <div data-cursor="TYPE" className="poster-keys mt-2 w-full max-w-[min(100%,42vh)] border-t border-line pt-2">
+                <div data-cursor="TYPE" className="poster-keys mt-2 w-full max-w-[min(100%,50vh)] border-t border-line pt-2">
                   <Keyboard keyStates={keyStates} onKey={handleKey} disabled={locked} compact />
                 </div>
 
@@ -385,6 +392,7 @@ export default function Game({ answer, puzzleNumber, today, variant = "editorial
             </span>
           </footer>
         </div>
+        {showIntro && <Intro onDone={handleIntroDone} />}
         {toastBanner}
         {dialogs}
       </>

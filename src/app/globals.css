@@ -90,39 +90,121 @@ button {
 }
 
 .poster-cursor {
-  transform: translate3d(calc(var(--mx, -100px) - 12px), calc(var(--my, -100px) - 12px), 0);
   transition: opacity 180ms ease;
+}
+
+.poster-cursor-halo,
+.poster-cursor-core {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
   will-change: transform;
 }
 
-.poster-cursor::after {
-  content: "";
-  position: absolute;
-  left: 11px;
-  top: 11px;
-  height: 4px;
-  width: 4px;
-  border-radius: 9999px;
-  background: var(--color-flame);
+.poster-cursor-halo {
+  height: 70px;
+  width: 70px;
+  margin: -35px 0 0 -35px;
+  border: 1px solid rgba(239, 78, 29, 0.55);
+  background: rgba(239, 78, 29, 0.05);
+  transform: translate3d(var(--mx, -100px), var(--my, -100px), 0);
+  transition: transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.poster-cursor-ring {
-  height: 24px;
-  width: 24px;
-  border: 1px solid var(--color-flame);
+.poster-cursor-halo::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 1px dashed rgba(239, 78, 29, 0.32);
   border-radius: 9999px;
-  background: rgba(239, 78, 29, 0.08);
-  box-shadow: 0 0 0 4px rgba(239, 78, 29, 0.06);
+  animation: spin 14s linear infinite;
+}
+
+.poster-cursor-core {
+  height: 56px;
+  width: 56px;
+  margin: -28px 0 0 -28px;
+  background: var(--color-flame);
+  color: var(--color-ink);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  transform: translate3d(var(--mx, -100px), var(--my, -100px), 0) scale(var(--cursor-scale, 1));
+  transition: transform 110ms linear;
+}
+
+.poster-cursor[data-state="active"] .poster-cursor-core {
+  --cursor-scale: 1.18;
 }
 
 .marquee-track:hover {
   animation-play-state: paused;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .poster-root,
+  .poster-root * {
+    cursor: none !important;
+  }
+}
+
 @media (hover: none), (pointer: coarse) {
   .poster-cursor {
     display: none;
   }
+}
+
+/* A short, self-directed overture before the board appears. */
+.intro-overlay {
+  animation: intro-in 0.35s ease both;
+}
+
+.intro-overlay[data-phase="leaving"] {
+  pointer-events: none;
+  animation: intro-exit 0.78s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.intro-star {
+  font-size: 14px;
+  animation: spin 9s linear infinite;
+}
+
+.intro-word {
+  font-size: clamp(58px, 15vw, 190px);
+  line-height: 0.82;
+}
+
+.intro-letter {
+  animation: intro-letter-in 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i) * 70ms + 180ms);
+}
+
+.intro-overlay[data-phase="leaving"] .intro-letter {
+  animation: intro-letter-out 0.6s cubic-bezier(0.5, 0, 0.9, 0.4) both;
+}
+
+.intro-caption {
+  animation: rise-in 0.7s ease both;
+  animation-delay: 0.9s;
+}
+
+.intro-progress span {
+  transition: width 90ms linear;
+}
+
+.poster-ready .poster-card {
+  animation: rise-in 0.7s 0.05s both;
+}
+
+.word-letter-mask {
+  animation: word-letter-in 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.word-letter {
+  transition: transform 620ms cubic-bezier(0.16, 1, 0.3, 1), color 220ms ease;
 }
 
 .editorial-label {
@@ -183,6 +265,37 @@ button {
   to { opacity: 1; transform: scale(1) rotate(0deg); }
 }
 
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes intro-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes intro-exit {
+  from { clip-path: inset(0 0 0 0); }
+  to { clip-path: inset(0 0 100% 0); }
+}
+
+@keyframes intro-letter-in {
+  from { opacity: 0; transform: translateY(115%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes intro-letter-out {
+  to {
+    opacity: 0;
+    transform: translate3d(var(--sx, 0), var(--sy, 0), 0) rotate(12deg);
+  }
+}
+
+@keyframes word-letter-in {
+  from { opacity: 0; transform: translateY(110%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .marquee-track {
   display: flex;
   width: max-content;
@@ -227,7 +340,15 @@ dialog::backdrop {
   }
 
   .poster-card {
-    max-width: min(100%, 56vh) !important;
+    max-width: min(100%, 58vh) !important;
+  }
+
+  .poster-board {
+    max-width: min(100%, 46vh) !important;
+  }
+
+  .poster-grid-rows {
+    max-width: min(100%, 44vh) !important;
   }
 
   .poster-keys {

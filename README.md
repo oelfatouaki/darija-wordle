@@ -24,6 +24,8 @@ Routes:
 - `/editorial` — the original scrolling editorial edition, available only in local development (404 on the deployed site).
 - `/one-page` — redirects to `/`.
 
+The official edition opens with a short animated overture (count-up, letter reveal, skip control). It plays once per year via a `darija_intro` cookie. The `darija.` wordmark scatters under the pointer, and a contextual cursor follows the mouse with a lagging halo.
+
 Useful scripts:
 
 ```bash

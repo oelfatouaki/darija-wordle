@@ -22,7 +22,7 @@ export default function Grid({ guesses, answer, draft, revealingRow, shaking, co
 
       <div
         aria-label="Six-row guess grid"
-        className={`mx-auto grid w-full gap-[3px] sm:gap-[4px] ${compact ? "max-w-[min(100%,38vh)]" : "max-w-[390px] sm:gap-2"}`}
+        className={`mx-auto grid w-full gap-[3px] sm:gap-[4px] ${compact ? "poster-grid-rows max-w-[min(100%,50vh)]" : "max-w-[390px] sm:gap-2"}`}
       >
         {Array.from({ length: MAX_GUESSES }, (_, rowIndex) => {
           const guess = guesses[rowIndex];
