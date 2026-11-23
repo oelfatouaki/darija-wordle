@@ -10,6 +10,7 @@ import HelpModal from "./HelpModal";
 import Intro from "./Intro";
 import Keyboard from "./Keyboard";
 import Logo from "./Logo";
+import LogoMark from "./LogoMark";
 import PosterResultModal from "./PosterResultModal";
 import ResultModal from "./ResultModal";
 import SiteFooter from "./SiteFooter";
@@ -323,24 +324,49 @@ export default function Game({
             </div>
           </header>
 
-          <main className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-1 px-4 pb-1 md:flex-row md:gap-6 md:px-8">
-            <section className="w-full shrink-0 md:min-w-0 md:flex-1">
-              <p className="poster-hide-compact-copy editorial-label text-dim">
-                <span className="text-flame">01</span> / Morocco, one word at a time
-              </p>
-              <Wordmark onNudge={() => showToast("Start typing — today’s word is waiting.")} />
-              <p className="poster-hide-compact-copy line-up delay-100 mt-3 max-w-[30ch] font-serif text-[clamp(15px,2vw,22px)] italic leading-tight text-dim md:mt-4">
-                Moroccan daily word puzzle
-              </p>
-              <div className="poster-hide-short mt-4 hidden items-center gap-3 md:flex">
-                <span aria-hidden="true" className="h-px w-10 bg-flame" />
-                <span className="editorial-label text-dim">3 = ع · 7 = ح</span>
+          <main className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-1 px-4 pb-1 md:flex-row md:gap-6 md:px-8 lg:gap-12">
+            <section className="relative w-full shrink-0 md:min-w-0 md:flex-1 lg:w-[clamp(300px,26vw,360px)] lg:flex-none">
+              <div className="poster-hide-compact-copy flex items-center gap-3">
+                <LogoMark inverse className="h-9 w-9 shrink-0 border border-line-dark" />
+                <p className="editorial-label leading-relaxed text-dim">
+                  <span className="block text-flame">No. {edition}</span>
+                  <span>Morocco · daily</span>
+                </p>
+                <span aria-hidden="true" className="ml-auto h-px flex-1 bg-line-dark" />
               </div>
+
+              <Wordmark onNudge={() => showToast("Start typing — today’s word is waiting.")} />
+
+              <p data-cursor="READ" className="poster-hide-compact-copy mt-4 font-serif text-[clamp(21px,2.5vw,34px)] leading-[1.02] tracking-[-0.02em] text-paper md:mt-5 md:max-w-[28ch] lg:max-w-none">
+                <span className="poster-copy-line">Six tries.</span>
+                <span className="poster-copy-line">One word.</span>
+                <span className="poster-copy-line italic text-flame">Every morning.</span>
+              </p>
+
+              <div className="poster-hide-compact-copy mt-5 flex flex-wrap items-center gap-2">
+                <span className="editorial-label mr-1 text-dim">Arabizi key</span>
+                <span className="border border-line-dark px-2 py-1 font-mono text-[11px] text-paper">
+                  3 = <span lang="ar" className="font-arabic text-[13px]">ع</span>
+                </span>
+                <span className="border border-line-dark px-2 py-1 font-mono text-[11px] text-paper">
+                  7 = <span lang="ar" className="font-arabic text-[13px]">ح</span>
+                </span>
+              </div>
+
+              <p className="poster-hide-compact-copy poster-hide-short mt-5 flex items-center gap-2 editorial-label text-dim">
+                <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-correct shadow-[0_0_0_3px_rgba(11,107,84,0.18)]" />
+                New word at midnight · Morocco time
+              </p>
+
+              <span aria-hidden="true" className="poster-hide-compact-copy pointer-events-none absolute left-full top-1/2 hidden w-12 -translate-y-1/2 items-center lg:flex">
+                <span className="h-px flex-1 bg-line-dark" />
+                <span className="ml-1 editorial-label text-flame">→</span>
+              </span>
             </section>
 
             <section
               data-cursor="PLAY"
-              className="poster-card relative w-full max-w-[min(100%,64vh,540px)] shrink-0 md:-translate-x-8 md:-rotate-1 md:transition-transform md:duration-500 md:hover:rotate-0"
+              className="poster-card relative w-full max-w-[min(100%,64vh,540px)] shrink-0 md:-translate-x-8 md:-rotate-1 md:transition-transform md:duration-500 md:hover:rotate-0 lg:max-w-[min(100%,64vh,540px,52vw)] lg:-translate-x-4"
             >
               {game.status === "won" && (
                 <span
